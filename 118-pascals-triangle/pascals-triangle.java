@@ -1,24 +1,26 @@
 class Solution {
+    public static List<Integer> generaterow(int row){
+        long ans = 1;
+        List<Integer> ansrow = new ArrayList<>(); 
+        ansrow.add((int)ans);
+        for(int col = 1; col< row;col++){
+            ans  = ans*(row - col);
+            ans = ans/col;
+            ansrow.add((int)ans);
+        }
+        return ansrow;
+
+    }
     public List<List<Integer>> generate(int numRows) {
-     List<List<Integer>> result = new ArrayList<>();
+     
+            List<List<Integer>> ans = new ArrayList<>();
+            for(int i = 1; i<=numRows;i++){
+              
+                ans.add(generaterow(i));
 
-        for (int i = 0; i < numRows; i++) {
-            List<Integer> row = new ArrayList<>();
-
-            for (int j = 0; j <= i; j++) {
-                if (j == 0 || j == i) {
-                    row.add(1);
-                } else {
-                    // Value is the sum of the two numbers above in the previous row
-                    int sum = result.get(i - 1).get(j - 1) + result.get(i - 1).get(j);
-                    row.add(sum);
-                }
             }
 
-            result.add(row);
-        }
-        return result;
+            return ans;
+        
     }
 }
-        
-    
